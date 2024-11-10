@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuerdos de Liseth y David</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff7f7f, #ffb3c1);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            background-color: #ff7f7f;
+            padding: 30px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.5rem;
+        }
+
+        .galeria {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .galeria h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .galeria-fotos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .foto {
+            width: 250px;
+            height: 350px;
+            text-align: center;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+
+        .foto-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .foto .message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            border-radius: 15px;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            padding: 15px;
+        }
+
+        .foto:hover .foto-inner {
+            transform: rotateY(180deg);
+        }
+
+        .mensaje {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-style: italic;
+        }
+
+        .citas {
+            background-color: #fff;
+            border-left: 5px solid #ff7f7f;
+            padding: 30px;
+            margin: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        blockquote {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #ff7f7f;
+            padding: 10px;
+            color: white;
+        }
+
+        /* Música de fondo */
+        audio {
+            width: 100%;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+/* Estilo del texto de la primera foto */
+.click-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem; /* Aumenté el tamaño del texto para hacerlo más visible */
+    color: white; /* Cambié el color a blanco para mayor contraste */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para que se destaque más */
+    animation: fade-blink 3s ease-in-out infinite;
+}
+
+/* Animación de parpadeo y difuminado */
+@keyframes fade-blink {
+    0%, 100% {
+        opacity: 1;
+        filter: blur(0px); /* Sin difuminado */
+    }
+    50% {
+        opacity: 0.6;
+        filter: blur(2px); /* Difuminado en el centro del ciclo */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+        <!-- Música de fondo -->
+        <audio id="musica" loop>
+            <source src="y2mate.com - Creep  Radiohead  Piano Cover  Sheet Music.mp3" type="audio/mp3">
+            Tu navegador no soporta este formato.
+        </audio>
+    
+        <script>
+            // Esperar que el contenido se cargue
+            document.addEventListener('DOMContentLoaded', function() {
+                // El volumen se ajusta al 50% de lo que está por defecto
+                var audio = document.getElementById('musica');
+                audio.volume = 0.05; // Volumen al 50%
+                
+                // Intentar reproducir la música en el primer clic del usuario
+                document.body.addEventListener('click', function() {
+                    audio.play();
+                });
+            });
+
+            // Función para ocultar el mensaje al hacer clic
+            function hideMessage() {
+                document.getElementById('click-message').style.display = 'none';
+            }
+        </script>
+
+    <header>
+        <h1>Recuerdos de Liseth y David</h1>
+        <p>Un espacio para revivir los mejores momentos juntos.</p>
+    </header>
+
+    <section class="galeria">
+        <h2>Momentos Especiales</h2>
+        <div class="galeria-fotos">
+            <div class="foto">
+                <div class="foto-inner" onclick="hideMessage()">
+                    <img src="WhatsApp Image 2024-11-10 at 1.50.25 PM.jpeg" alt="Primera salida">
+                    <div class="message">Una primera salida, comida mexicana, risas, recuerdos, y ambos disfrutando el momento.</div>
+                    <div id="click-message" class="click-text">Click en la foto</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 2.10.53 PM.jpeg" alt="Primer beso">
+                    <div class="message">¿Lo recuerdas? Yo a la perfección, el mejor momento de mi vida. Estaba muerto de nervios, pero al juntar tus labios con los míos, el tiempo se detuvo. Y con Creep de fondo, supe que no había nada más importante que ese instante, solo tu y yo.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <video width="100%" height="100%" autoplay loop muted>
+                        <source src="WhatsApp Video 2024-11-10 at 1.50.27 PM.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                    <div class="message">Este momento lo recuerdo tan bien. Me dolían las piernas y estaba muerto de frío, pero la caricia de tus manos sobre mi piel era tan pura que todo lo demás desapareció, no había frío, no había dolor.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.50.27 PM.jpeg" alt="Cocteles">
+                    <div class="message">Liseth que coctel tan feo te pediste JAJAJAJ. 2 personas, 2 cocteles y una hermosa vista, y es obvio que hablo de ti.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 2.56.05 PM.jpeg" alt="Picnic">
+                    <div class="message">Entre muñequitos y risas, ese día creamos más que solo figuritas de porcelanicron: un montón de momentos que siempre recordaré.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.45 PM (5).jpeg" alt="cafe">
+                    <div class="message">El café, los pinceles y los muñecos de porcelana fueron el escenario perfecto para crear un recuerdo que ahora tiene más colores que cualquier figurita que hemos pintamos.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.44 PM.jpeg" alt="lasagna">
+                    <div class="message">cooking date, tú explicándome con paciencia cómo hacer una lasagna, a pesar de que yo no sabía ni por dónde empezar, un desastre total. Entre risas y un buen vinito, la noche se convirtió en un recuerdo hermoso.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.45 PM.jpeg" alt="lasagna">
+                    <div class="message">Nuestra cooking date terminó con un brindis, la mejor compañía y la sensación de que no podíamos pedir más.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.46 PM.jpeg" alt="Disfraces">
+                    <div class="message">Halloween, caminamos por la ciudad entre risas y bromas, y cuando nos dio hambre, nos refugiamos en un fast food, demostrando que lo mejor no siempre es lo más elaborado.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <video width="100%" height="100%" autoplay loop muted>
+                        <source src="WhatsApp Video 2024-11-10 at 2.38.57 PM.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                    <div class="message">Un día cualquiera en una cafetería, donde las conversaciones fluían tan naturalmente. No importaba el tema, lo importante era estar allí, disfrutando del momento juntos.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 2.50.30 PM.jpeg" alt="Disfraces">
+                    <div class="message">En cada regalito, carta o detalle que te hago, pongo un pedazo de mí. No son solo cosas materiales, son mi forma de decirte todo lo que a veces las palabras no alcanzan a expresar.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.46 PM (2).jpeg" alt="Disfraces">
+                    <div class="message">Cine, palomitas y una compañía inmejorable. Ese día fue perfecto, pero lo mejor fue cómo todo se volvió especial solo porque estaba contigo.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <video width="100%" height="100%" autoplay loop muted>
+                        <source src="WhatsApp Video 2024-11-10 at 1.36.46 PM.mp4" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                    <div class="message">Entre risas en una panaderia y la espera de que la lluvia pasara. Un momento tan simple, pero tan lleno de diversión, que se quedó grabado en mi memoria.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <img src="WhatsApp Image 2024-11-10 at 1.36.48 PM.jpeg" alt="Disfraces">
+                    <div class="message">Frente al espejo, nos miramos por un momento, y sin decir una palabra, compartimos un beso que lo decía todo. En ese reflejo, vi más que nuestros rostros; vi lo que sentimos, un instante perfecto que guardaremos para siempre.</div>
+                </div>
+            </div>
+            <div class="foto">
+                <div class="foto-inner">
+                    <!-- Foto frontal -->
+                    <img src="WhatsApp Image 2024-11-10 at 2.45.32 PM.jpeg" alt="Disfraces" class="foto-front">
+
+                    <div class="message">Gracias por todo <3</div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <section class="mensaje">
+        <h2>Mensaje Especial</h2>
+        <p>
+            
+            "Quiero aclarar algo que siento que es importante. Lo que compartimos siempre lo vi como una conexión de amistad, aunque en ocasiones pudo haber parecido algo más. Las circunstancias tal vez hicieron que las cosas se complicaran o que los sentimientos se confundieran, pero mi intención nunca fue crear malentendidos ni situaciones incómodas.
+            
+            Te aprecio muchísimo como persona y como amiga, y lo que más quiero es que sigamos siendo parte de la vida del otro de una forma sana. Todo lo que ocurrió fue un resultado de mis inseguridades y la necesidad de afecto que, por mis propios problemas, no supe gestionar bien. No quiero que pienses que te estoy exigiendo más de lo que puedes dar ni que todo esto depende de ti.
+            
+            Lo que quiero es cambiar, mejorar como persona y ser más estable emocionalmente, por mí mismo y por quienes me importan. Si en algún momento te hice sentir que estabas en una posición incómoda o que te estaba presionando, lamento que lo hayas interpretado así, porque mi intención nunca fue hacerte sentir mal.
+            
+            Me gustaría mucho que pudiéramos retomar la conexión que teníamos, de manera tranquila y sin presiones. No te estoy pidiendo nada que no estés dispuesta a dar, simplemente quiero que sepas que valoro nuestra amistad y que, si en algún momento sientes que hay espacio para seguir adelante, me encantaría que lo hiciéramos.".</p>
+    </section>
+
+    <section class="citas">
+        <h2>"Aunque el camino no siempre es fácil, cada paso que damos lo quiero dar contigo"</h2>
+        
+    </section>  
+
+    <footer>
+        <p>Creado con cariño para nosotros</p>
+    </footer>
+
+    <script>
+        // Activar animaciones de las fotos
+        document.addEventListener('DOMContentLoaded', function() {
+            const fotos = document.querySelectorAll('.foto');
+            window.addEventListener('scroll', function() {
+                fotos.forEach(function(foto) {
+                    const rect = foto.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        foto.classList.add('visible');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
